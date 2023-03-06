@@ -16,7 +16,7 @@ df<- read_html(url) %>% html_nodes(html_path) %>% html_table() %>% '[['(1)
 
 
 -------------------------------------------------------------------------------------------------------------------------
-#get data from imdb API
+#get data from IMDB API
 
 
 #load libraries
@@ -24,16 +24,27 @@ df<- read_html(url) %>% html_nodes(html_path) %>% html_table() %>% '[['(1)
 library(httr)
 library(jsonlite)
 
-#url
-url_api <- "https://imdb-top-100-movies.p.rapidapi.com/"
 
-#call API and get response
-response_api <- VERB("GET", url_api, add_headers('X-RapidAPI-Key' = 'b93a317e91msh783ecd54dc4c01bp15609fjsnb56a54a779a3', 'X-RapidAPI-Host' = 'imdb-top-100-movies.p.rapidapi.com'), content_type("application/json"))
+# Retrieve API key from environment variable
+api_key <- Sys.getenv("IMDB_API_KEY")
 
-# Convert response content to a data frame
-df_api <- fromJSON(content(response_api, "text"), flatten = TRUE)
 
-# Print the resulting data frame
-print(df_api)
+#url to API
+url <- "https://imdb-top-100-movies.p.rapidapi.com/"
+
+#response from API call
+response <- VERB("GET", url, 
+                 add_headers('X-RapidAPI-Key' = api_key, 
+                             'X-RapidAPI-Host' = 'imdb-top-100-movies.p.rapidapi.com'), 
+                 content_type("application/json"))
+
+
+# Convert response content to JSON object
+movies <- fromJSON(content(response, "text"), flatten = TRUE)
+
+# Convert JSON object to data frame
+df_api <- as.data.frame(movies)
+
+
 
 
