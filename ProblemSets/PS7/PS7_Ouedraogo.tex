@@ -1,0 +1,102 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{PS7}
+\author{Anais Ouedraogo}
+
+\begin{document}
+\maketitle
+
+
+
+\section{Data imputation and model summary}
+
+There are 560 logwage observations missing which is 1/4 of the total observations. I think the logwage variable is most likely to be MAR.
+
+B1 in the first and second methods is the same(0.062) and B1 in the third and fourth methods is the same value(0.052). There is a 0.031 difference between the true value of B1 and B1 in the first two methods while there is a 0.041 difference between the true value of B1 and B1 in the last two methods. I can conclude that the imputation methods are not ideal but mean imputation and listwise deletion seem to be more accurate in this case compare to the other 2. The estimates of B1 for the last two methods are the predicted values.
+
+
+ I have not made a lot of progress in my project. I am planning to use data that will analyze degree return and I want to use multiple regression.
+
+ Below you can see the model summary of the data frame and the table summary of the four methods.
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lc}
+\toprule
+  & (1)\\
+\midrule
+(Intercept) & \num{0.534}\\
+ & (\num{0.146})\\
+hgc & \num{0.062}\\
+ & \vphantom{1} (\num{0.005})\\
+tenure & \num{0.050}\\
+ & (\num{0.005})\\
+ tenure ^ 2 & \num{-0.002}\\
+ & (\num{0.000})\\
+age & \num{0.000}\\
+ & (\num{0.003})\\
+marriedsingle & \num{-0.022}\\
+ & (\num{0.018})\\
+collegenot college grad & \num{0.145}\\
+ & (\num{0.034})\\
+\midrule
+Num.Obs. & \num{1669}\\
+R2 & \num{0.208}\\
+R2 Adj. & \num{0.206}\\
+AIC & \num{1179.9}\\
+BIC & \num{1223.2}\\
+Log.Lik. & \num{-581.936}\\
+RMSE & \num{0.34}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lcccc}
+\toprule
+  & Complete Cases & Mean Imputation & Regression Imputation & Multiple Imputation\\
+\midrule
+(Intercept) & \num{0.534} & \num{0.534} & \num{0.718} & \num{0.718}\\
+ & (\num{0.146}) & (\num{0.146}) & (\num{0.119}) & (\num{0.119})\\
+hgc & \num{0.062} & \num{0.062} & \num{0.052} & \num{0.052}\\
+ & (\num{0.005}) & (\num{0.005}) & (\num{0.004}) & \vphantom{1} (\num{0.004})\\
+tenure & \num{0.050} & \num{0.050} & \num{0.039} & \num{0.039}\\
+ & (\num{0.005}) & (\num{0.005}) & (\num{0.004}) & (\num{0.004})\\
+ tenure ^ 2 & \num{-0.002} & \num{-0.002} & \num{-0.001} & \num{-0.001}\\
+ & (\num{0.000}) & (\num{0.000}) & (\num{0.000}) & (\num{0.000})\\
+age & \num{0.000} & \num{0.000} & \num{-0.001} & \num{-0.001}\\
+ & (\num{0.003}) & (\num{0.003}) & (\num{0.002}) & (\num{0.002})\\
+marriedsingle & \num{-0.022} & \num{-0.022} & \num{-0.020} & \num{-0.020}\\
+ & (\num{0.018}) & (\num{0.018}) & (\num{0.014}) & (\num{0.014})\\
+collegenot college grad & \num{0.145} & \num{0.145} & \num{0.174} & \num{0.174}\\
+ & (\num{0.034}) & (\num{0.034}) & (\num{0.026}) & (\num{0.026})\\
+\midrule
+Num.Obs. & \num{1669} & \num{1669} & \num{2229} & \num{2229}\\
+R2 & \num{0.208} & \num{0.208} & \num{0.158} & \num{0.158}\\
+R2 Adj. & \num{0.206} & \num{0.206} & \num{0.155} & \num{0.155}\\
+AIC & \num{1179.9} & \num{1179.9} & \num{1219.2} & \num{1219.2}\\
+BIC & \num{1223.2} & \num{1223.2} & \num{1264.8} & \num{1264.8}\\
+Log.Lik. & \num{-581.936} & \num{-581.936} & \num{-601.579} & \num{-601.579}\\
+RMSE & \num{0.34} & \num{0.34} & \num{0.32} & \num{0.32}\\
+\bottomrule
+
+\end{tabular}
+\end{table}
+
+
+
+\end{document}
