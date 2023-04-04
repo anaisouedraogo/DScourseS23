@@ -110,6 +110,7 @@ print(summary(lm(y~x)))
 
 -------------------------------------------------------------------------------------------
  #using lm
-beta_lm <-lm(Y ~ X-1)
-modelsummary(beta_lm, output='latex')
+beta_lm <-lm(y ~ X - 1)
+modelsum<-modelsummary(beta_lm, output='latex')
+modelsum
 
