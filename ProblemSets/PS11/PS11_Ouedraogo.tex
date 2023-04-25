@@ -1,0 +1,234 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{endfloat}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+
+\title{Hourly wages prediction using common wage determinants}
+\author{Anais Ouedraogo}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+\begin{itemize}
+\item Introduce determinants of hourly wages that will be used in the regression
+
+E.g: Wage differences due to discrimination has been an issue that always existed and is present in many aspects of our daily life. We often hear about wage discrimination based on gender but also on race and age.
+\item Give  general statistics
+
+E.g: Racial gaps in hourly wage are a real issue that needs to be addressed. Whites in the US earn around 30\%  more per hour than Blacks, and this difference is associated with large racial differences in occupational assignments.\cite{golan2019} 
+\item Give goal of the paper
+
+E.g: The goal of this paper is to predict hourly wages using the Lasso prediction model and the Rigde prediction model using different income determinants.
+\end{itemize}
+
+
+\section{Literature review}
+\begin{itemize}
+\item Literature review on the relationship between each determinant and hourly wage
+
+For race:
+A paper by Petre Melinda examined the role of cognitive and non-cognitive skills in racial wage gaps. She came up with two main explanations for the persistence of wage gaps. Firstly, minority workers with the same ability and training receive lower wages, and secondly, minority workers bring less skill and ability to the market.\cite{petre2019}
+An article by Marjorie Baldwin and John A Bishop looked over the variation of black-white wage ratios on the wage distribution in 1991. They found that racial gap increases with wages for men and that there is nearly no wage gap for black women at all wage levels. \cite{baldwin1991}
+Using data from 1983, CPS Hirsch and Schumacher investigated the effect of racial composition of the labor market on wage rate. The results were that the wage rates of whites and blacks were lower in industry-occupation-regional groups with a high density of black workers. This study is different from most others because it studies the effect of black density on wage which is very interesting. This says that a white worker in a black dense industry will be affected by the discriminant wage rates.\cite{hirsch1992}
+
+Education Level:
+
+Sex:
+
+Age:
+
+\end{itemize}
+
+\section{Data}
+In order to investigate the question, I am using two different datasets (atusresp and atuscps) from the American Time Use Survey(ATUS) available in the atus R package. Both data frames contain information collected in the CPS about all individuals who responded to the ATUS between 2003 and 2016. Atuscps dataset gives information about education and demographics while atusresp contains information about wages and employment for the same household id numbers. In total, both datasets have 35 variables with  181,335 observations. For this paper, we are only going to use the following 9 variables. Refer to table 1.
+
+\begin{itemize}
+\item Explore data
+\item Do barplots for categorical variables
+\item histogram for age
+\item graph correlation between age and hourly wage
+\end{itemize}
+
+\section{Methods}
+\begin{enumerate}
+\item Linear regression
+\begin{itemize}
+\item Classic linear regression
+\item y = \beta_0 + \beta_1 x + u
+
+
+\begin{equation}
+\begin{split}
+\text{logwage} = 1.81 & + 0.004\text{Black only} - 0.004\text{Asian only} - 0.003\text{Other} + 0.074\text{hs diploma} \\
+& + 0.088\text{some college} + 0.119\text{associate degree} + 0.105\text{bachelor’s degree} + 0.054\text{master’s degree} \\
+& - 0.130\text{prof degree} - 0.072\text{doctoral degree} - 0.004\text{midwest} - 0.029\text{south} + 0.009\text{west} \\
+& - 0.022\text{female} + 0.002\text{age} 
+ - 0.098\text{PT} + 0.007\text{professional} - 0.117 \text{service}\\
+& - 0.085 \text{sales}- 0.000 \text{office admin}- 0.109 \text{farming forestry fishing}\\
+&+ 0.039 \text{construction}+ 0.037 \text{install repair maint}- 0.003 \text{production}\\
+&- 0.039 \text{transport}+ u
+\end{split}
+\end{equation}
+
+
+\end{itemize}
+\item Lasso Regression model
+\begin{itemize}
+\item 10-fold cross validation
+\end{itemize}
+\item Ridge Regression model
+\end{enumerate}
+
+\begin{itemize}
+\item 10-fold cross validation
+\end{itemize}
+
+\section{Findings}
+\begin{itemize}
+\item Discuss the result of classical linear regression and the coefficients in table 2
+\item Discuss lasso in sample and out of sample rmse using figure 1
+\item Discuss ridge in sample and out of sample rmse using figure 2
+
+\end{itemize}
+
+
+\section{Conclusion}
+Both lasso and ridge model gave the same best rmse with the lowest penalty. There is not much difference in the prediction of the two model.The models are not overfitting and not underfitting. Race, age, sex, education level,region, part time/full time, and the  working industry can be considered good determinants of hourly wages.
+
+
+
+
+
+
+
+\bibliographystyle{plain}
+\bibliography{sample}
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{table}
+\centering
+\begin{tabular}{l|l}
+Variable & Description \\\hline
+region & region of household \\
+sex & respondent sex
+age & respondent age
+edu & respondent education level
+race & respondent race
+occup_code & occupational code
+ptft & whether the respondent works part-time or full-time
+hourly_wage  &  hourly earnings at main job in dollars
+\end{tabular}
+\caption{\label{tab:widgets}Variable description.}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lc}
+\toprule
+  & (1)\\
+\midrule
+(Intercept) & \num{1.816}\\
+ & \vphantom{6} (\num{0.005})\\
+regionmidwest & \num{-0.004}\\
+ & \vphantom{5} (\num{0.003})\\
+regionsouth & \num{-0.029}\\
+ & \vphantom{3} (\num{0.002})\\
+regionwest & \num{0.009}\\
+ & \vphantom{4} (\num{0.003})\\
+sexfemale & \num{-0.022}\\
+ & \vphantom{2} (\num{0.002})\\
+eduhs diploma & \num{0.074}\\
+ & \vphantom{3} (\num{0.003})\\
+edusome college & \num{0.088}\\
+ & \vphantom{2} (\num{0.003})\\
+eduassociate degree & \num{0.119}\\
+ & \vphantom{1} (\num{0.003})\\
+edubachelor's degree & \num{0.105}\\
+ & (\num{0.003})\\
+edumaster's degree & \num{0.054}\\
+ & \vphantom{5} (\num{0.005})\\
+eduprof degree & \num{-0.130}\\
+ & (\num{0.011})\\
+edudoctoral degree & \num{-0.072}\\
+ & (\num{0.014})\\
+raceBlack only & \num{0.004}\\
+ & \vphantom{1} (\num{0.002})\\
+raceOther & \num{-0.003}\\
+ & \vphantom{4} (\num{0.005})\\
+raceAsian only & \num{-0.004}\\
+ & \vphantom{3} (\num{0.005})\\
+age & \num{0.002}\\
+ & \vphantom{1} (\num{0.000})\\
+occup\_codeprofessional & \num{0.007}\\
+ & \vphantom{4} (\num{0.004})\\
+occup\_codeservice & \num{-0.117}\\
+ & \vphantom{3} (\num{0.004})\\
+occup\_codesales & \num{-0.085}\\
+ & \vphantom{2} (\num{0.004})\\
+occup\_codeoffice\_admin & \num{0.000}\\
+ & \vphantom{1} (\num{0.004})\\
+occup\_codefarming\_forestry\_fishing & \num{-0.109}\\
+ & (\num{0.010})\\
+occup\_codeconstruction & \num{0.039}\\
+ & \vphantom{2} (\num{0.005})\\
+occup\_codeinstall\_repair\_maint & \num{0.037}\\
+ & \vphantom{1} (\num{0.005})\\
+occup\_codeproduction & \num{-0.003}\\
+& (\num{0.004})\\
+occup\_codetransport & \num{-0.039}\\
+ & (\num{0.005})\\
+ptftPT & \num{-0.098}\\
+ & (\num{0.002})\\
+hourly\_wage & \num{0.045}\\
+ & (\num{0.000})\\
+\midrule
+Num.Obs. & \num{56217}\\
+R2 & \num{0.870}\\
+R2 Adj. & \num{0.870}\\
+AIC & \num{-26490.1}\\
+BIC & \num{-26239.9}\\
+Log.Lik. & \num{13273.075}\\
+F & \num{14508.256}\\
+RMSE & \num{0.19}\\
+\bottomrule
+\end{tabular}
+\caption{\label{tab:widgets}Linear regression model summury}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{top_rmse_lasso.png}
+\caption{\label{fig:frog} Top Lasso RMSE.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{top_rmse_ridge.png}
+\caption{\label{fig:frog} Top Ridge RMSE.}
+\end{figure}
+
+\end{document}
