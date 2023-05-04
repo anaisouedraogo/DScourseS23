@@ -1,0 +1,105 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{PS12}
+\author{Anais Ouedraogo}
+
+\begin{document}
+\maketitle
+
+
+\begin{itemize}
+\item The mean value of exper is almost half of the mean value of hgc. The median value of exper is exactly half of the median value of hgc.
+\item lowage is missing at a rate of 31\%. I think that it might be MAR
+\end{itemize}
+
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lrrrrrrr}
+\toprule
+  & Unique (\#) & Missing (\%) & Mean & SD & Min & Median & Max\\
+\midrule
+logwage & 1546 & 31 & \num{1.7} & \num{0.7} & \num{-1.0} & \num{1.7} & \num{4.2}\\
+hgc & 14 & 0 & \num{12.5} & \num{2.4} & \num{5.0} & \num{12.0} & \num{18.0}\\
+exper & 1932 & 0 & \num{6.4} & \num{4.9} & \num{0.0} & \num{6.0} & \num{25.0}\\
+kids & 2 & 0 & \num{0.4} & \num{0.5} & \num{0.0} & \num{0.0} & \num{1.0}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{itemize}
+\item The value of b1​ using the listwise deletion and mean imputation is the same: 0.059. The value of b1​ using the Heckman method is −1.104. There is a 0.032 difference between the true value of b1​ and b1​ in the first two methods, while there is a 1.195 difference between the true value of b1​ and b1​ in the last method. I can conclude that mean imputation and listwise deletion seem to be more accurate in this case compared to the Heckman method.
+\end{itemize}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lccc}
+\toprule
+  & (Listwise Deletion) & (Mean Imputation) & (Heckman Selection)\\
+\midrule
+(Intercept) & \num{0.834} & \num{0.834} & \num{0.446}\\
+ & \num{0.834} & \num{0.834} & \num{20.553}\\
+ & (\num{0.113}) & (\num{0.113}) & (\num{0.122})\\
+ & (\num{0.113}) & (\num{0.113}) & (\num{1.111})\\
+hgc & \num{0.059} & \num{0.059} & \num{-1.104}\\
+ & \num{0.059} & \num{0.059} & \num{0.091}\\
+ & (\num{0.009}) & (\num{0.009}) & (\num{0.010})\\
+ & (\num{0.009}) & (\num{0.009}) & (\num{0.066})\\
+union1 & \num{0.222} & \num{0.222} & \num{-1.113}\\
+ & \num{0.222} & \num{0.222} & \num{0.186}\\
+ & (\num{0.087}) & (\num{0.087}) & (\num{0.084})\\
+ & (\num{0.087}) & (\num{0.087}) & (\num{0.213})\\
+college1 & \num{-0.065} & \num{-0.065} & \num{-0.565}\\
+ & \num{-0.065} & \num{-0.065} & \num{0.092}\\
+ & (\num{0.106}) & (\num{0.106}) & (\num{0.100})\\
+ & (\num{0.106}) & (\num{0.106}) & (\num{0.227})\\
+exper & \num{0.050} & \num{0.050} & \num{-0.506}\\
+ & \num{0.050} & \num{0.050} & \num{0.054}\\
+ & (\num{0.013}) & (\num{0.013}) & (\num{0.012})\\
+ & (\num{0.013}) & (\num{0.013}) & (\num{0.030})\\
+ & \num{-0.004} & \num{-0.004} & \num{-0.002}\\
+ & (\num{0.001}) & (\num{0.001}) & (\num{0.001})\\
+married1 &  &  & \num{-2.275}\\
+ &  &  & (\num{0.162})\\
+kids &  &  & \num{0.495}\\
+ &  &  & (\num{0.114})\\
+invMillsRatio &  &  & \num{-0.695}\\
+ &  &  & (\num{0.060})\\
+sigma &  &  & \num{0.696}\\
+rho &  &  & \num{-0.998}\\
+\midrule
+Num.Obs. & \num{1545} & \num{1545} & \num{2229}\\
+R2 & \num{0.038} & \num{0.038} & \num{0.092}\\
+R2 Adj. & \num{0.035} & \num{0.035} & \num{0.088}\\
+AIC & \num{3182.4} & \num{3182.4} & \\
+BIC & \num{3219.8} & \num{3219.8} & \\
+Log.Lik. & \num{-1584.189} & \num{-1584.189} & \\
+F & \num{12.106} & \num{12.106} & \\
+RMSE & \num{0.67} & \num{0.67} & \num{0.66}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+
+\begin{itemize}
+\item Probit model: The counterfactual policy did not have a significant effect the mean probability changed from 0.2373 to 0.2278. I think that the model estimated above is not realistic because the probability should be higher and a counterfactual policy should have had a bigger effect.
+
+\end{itemize}
+
+
+\end{document}
